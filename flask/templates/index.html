@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain MRI Stroke Detection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .menu .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .home-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        #model-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-text {
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+        }
+
+        .prediction-form {
+            margin-top: 2rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            background: white;
+            color: black;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .submit-button {
+            background: #0056b3;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .prediction-result {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <a href="/" class="logo">BrainScan AI</a>
+    </nav>
+
+    <div class="home-hero">
+        <div id="model-container"></div>
+        <div class="hero-text">
+            <h1>Advanced Brain MRI Analysis</h1>
+            <p>Upload a Brain MRI scan for stroke detection</p>
+            <form class="prediction-form" action="/predict" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" id="file-input" class="file-input" accept="image/*" required>
+                <label for="file-input" class="file-label">Choose MRI Scan</label>
+                <button type="submit" class="submit-button">Analyze Scan</button>
+            </form>
+            <div class="prediction-result">
+                {% if prediction %}
+                Prediction: {{ prediction }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GLTF model loading and interactive visualization
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById("model-container").appendChild(renderer.domElement);
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        // Load the brain GLTF model
+        const loader = new THREE.GLTFLoader();
+        loader.load(
+            "/static/assets/brain_point_cloud/scene.gltf", // Flask static file path
+            (gltf) => {
+                const model = gltf.scene;
+                model.scale.set(10, 10, 10);
+                model.position.set(0, -1, 0);
+                scene.add(model);
+
+                // Mouse interactivity
+                let mouseX = 0, mouseY = 0;
+                document.addEventListener('mousemove', (event) => {
+                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                // Animation
+                function animate() {
+                    requestAnimationFrame(animate);
+                    model.rotation.y += 0.01; // Rotate the model
+                    model.rotation.x = mouseY * 0.2; // Mouse interaction for x-axis
+                    model.rotation.y += mouseX * 0.01; // Mouse interaction for y-axis
+                    renderer.render(scene, camera);
+                }
+                animate();
+            },
+            undefined,
+            (error) => console.error('An error occurred while loading the model:', error)
+        );
+
+        camera.position.z = 5;
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+</body>
+</html>

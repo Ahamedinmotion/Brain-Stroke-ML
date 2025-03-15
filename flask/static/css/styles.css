@@ -1,0 +1,84 @@
+/* General Reset */
+body, h1, h2, p, input, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Body and Background */
+body {
+  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  color: white;
+  scroll-behavior: smooth;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #141e30, #243b55);
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #00ffe0;
+}
+
+#brain-visual {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+/* Interactive Demo Section */
+.interactive-demo {
+  text-align: center;
+  padding: 2rem;
+  background: #1e2b38;
+}
+
+.interactive-demo h2 {
+  font-size: 2rem;
+  color: #ffcc00;
+}
+
+input[type="file"] {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: none;
+  background: #ffffff;
+  color: #1e2b38;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background: #0066ff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #003399;
+}
+
+#demo-output {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+  background: #121212;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+}
