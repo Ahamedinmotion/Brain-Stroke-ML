@@ -1,0 +1,30 @@
+name: Kaggle Dataset Sync
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync_kaggle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Kaggle API
+        run: |
+          pip install kaggle
+          mkdir -p ~/.kaggle
+          echo "${{ secrets.KAGGLE_JSON }}" > ~/.kaggle/kaggle.json
+
+      - name: Set Kaggle API Key Permissions
+        run: chmod 600 ~/.kaggle/kaggle.json
+
+      - name: Upload Dataset to Kaggle
+        run: kaggle datasets version -p /kaggle/input/brain-stroke-scanstesttrainvalidation-normal/dataset --dir-mode zip -m "Updated dataset"
