@@ -26,5 +26,10 @@ jobs:
           echo "{\"username\":\"${{ secrets.KAGGLE_USERNAME }}\",\"key\":\"${{ secrets.KAGGLE_KEY }}\"}" > ~/.kaggle/kaggle.json
           chmod 600 ~/.kaggle/kaggle.json
 
+      - name: Ensure Dataset Directory Exists
+        run: |
+          mkdir -p dataset
+          echo "Dummy file to ensure directory is not empty" > dataset/dummy.txt
+
       - name: Upload Dataset to Kaggle
-        run: kaggle datasets version -p /kaggle/input/brain-stroke-scanstesttrainvalidation-normal/dataset --dir-mode zip -m "Updated dataset"
+        run: kaggle datasets version -p dataset --dir-mode zip -m "Updated dataset"
