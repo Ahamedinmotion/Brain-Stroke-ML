@@ -31,5 +31,15 @@ jobs:
           mkdir -p dataset
           echo "Dummy file to ensure directory is not empty" > dataset/dummy.txt
 
+      - name: Create Kaggle Metadata File
+        run: |
+          cat << EOF > dataset/dataset-metadata.json
+          {
+            "title": "Brain Stroke Scans",
+            "id": "${{ secrets.KAGGLE_USERNAME }}/brain-stroke-scans",
+            "licenses": [{"name": "CC0-1.0"}]
+          }
+          EOF
+
       - name: Upload Dataset to Kaggle
         run: kaggle datasets version -p dataset --dir-mode zip -m "Updated dataset"
