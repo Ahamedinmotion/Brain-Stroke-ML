@@ -36,7 +36,7 @@ jobs:
           cat << EOF > dataset/dataset-metadata.json
           {
             "title": "Brain Stroke Scans",
-            "id": "ahamedinmotion/brain-stroke-scans",
+            "id": "ahamedinmotion/brain-stroke-scanstesttrainvalidation-normal",
             "licenses": [{"name": "CC0-1.0"}]
           }
           EOF
