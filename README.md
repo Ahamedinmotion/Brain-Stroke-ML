@@ -72,6 +72,10 @@ Edit
 pip install -r requirements.txt
 3️⃣ Run the Flask app
 
+## Brain Stroke Detection Model
+The trained model is hosted on Hugging Face: [brainstroke_model.h5](https://huggingface.co/Ahamedinmotion/brainstroke-model/tree/main)
+
+
 bash
 Copy
 Edit
