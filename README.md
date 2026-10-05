@@ -1,112 +1,27 @@
-🧠 Brain Stroke Prediction Using Deep Learning
-🔬 AI-powered stroke detection from MRI scans using CNNs, TensorFlow, Flask, and Python.
+<img src="assets/cover.svg" alt="Brain Stroke ML — early work, model artifact and documentation." width="100%">
 
-🚀 Project Overview
-This project uses Deep Learning (Convolutional Neural Networks) to predict stroke presence from MRI scans. By analyzing medical imaging, this model enhances early detection, potentially saving lives.
+# Brain Stroke ML
 
-✅ Built With:
+An early educational project exploring brain-stroke classification from MRI images using TensorFlow/Keras and a Flask application.
 
-Python (for model development)
-TensorFlow/Keras (to train and optimize CNNs)
-Flask (to integrate the model into a web app)
-HTML/CSS (for a user-friendly UI)
-Werkzeug (for secure file uploads)
-🚀 Key Features:
-✔️ MRI Image Analysis with CNNs
-✔️ Web-based Prediction System using Flask
-✔️ Fast & Accurate Stroke Detection
-✔️ Open-source for Healthcare AI Research
+This repository currently preserves the project description, dependency list and a link to the hosted model. The training notebook, application source and evaluation report described in earlier versions of this README are not included in the current tree.
 
-⚙️ How It Works
-1️⃣ Upload an MRI Scan.
-2️⃣ The image is preprocessed and passed to the Deep Learning Model.
-3️⃣ The model predicts stroke probability and displays the result.
+## Available artifact
 
-🖥️ Tech Stack:
+[Model files on Hugging Face →](https://huggingface.co/Ahamedinmotion/brainstroke-model/tree/main)
 
-🏗️ Deep Learning Model: CNNs with TensorFlow
-📊 Dataset: Public stroke MRI datasets
-🌐 Web Interface: Flask, HTML, CSS
-🔄 Preprocessing: Image resizing, normalization
-📸 Screenshots & Demos
+## Project context
 
+The original work explored image preprocessing, neural-network classification, and a web interface for model inference. It was a learning project, not a clinically validated diagnostic system.
 
-🔴 Example MRI Scan Prediction:
+A dataset split, confusion matrix and reproducible evaluation would be needed to assess model performance. This page does not assert a current accuracy figure or patient-care benefit.
 
-MRI Scan	Model Prediction
-🧠 scan1.jpg	Stroke Detected (0.85 confidence)
-🧠 scan2.jpg	No Stroke Detected (0.15 confidence)
-📂 File Structure
-php
-Copy
-Edit
-Brain-Stroke-ML/
-│── models/               # Saved ML models  
-│── static/               # Frontend assets (CSS, JS, Images)  
-│── templates/            # HTML files for Flask  
-│── uploads/              # Temporary folder for uploaded MRI scans  
-│── main.py               # Main Flask application  
-│── model_train.ipynb     # Jupyter Notebook for training  
-│── requirements.txt      # Dependencies  
-│── README.md             # This file  
-💡 Future Improvements
-🚀 Enhancements:
+## Repository contents
 
-Integrate real-time AI predictions in hospitals.
-Train on larger datasets for better accuracy.
-Deploy as a cloud API for easy access.
-Implement Federated Learning for privacy-preserving AI.
-🛠️ Setup & Installation
-1️⃣ Clone this repository
+- `requirements.txt` — the recorded Python dependencies.
+- `LICENSE` — the repository's existing MIT licence.
+- `docs/legacy-dataset-sync.yml` — the previous dataset-sync workflow, retained as an inactive historical reference. It is not an executable GitHub Actions workflow.
 
-bash
-Copy
-Edit
-git clone https://github.com/your-username/Brain-Stroke-ML.git
-cd Brain-Stroke-ML
-2️⃣ Install dependencies
+There are no working clone-and-run instructions here because the application source is not present. The hosted model is linked as an artifact; using it requires a compatible runtime and a documented preprocessing pipeline.
 
-bash
-Copy
-Edit
-pip install -r requirements.txt
-3️⃣ Run the Flask app
-
-## Brain Stroke Detection Model
-The trained model is hosted on Hugging Face: [brainstroke_model.h5](https://huggingface.co/Ahamedinmotion/brainstroke-model/tree/main)
-
-
-bash
-Copy
-Edit
-flask run
-Then, open http://127.0.0.1:5000/ in your browser.
-
-🌍 Sustainable Development & Ethical AI
-🌱 Health & AI for a Better Future
-SDG 3: Good Health & Well-being 🌍
-AI-driven stroke detection = Early intervention = Lives saved ❤️
-Minimizing misdiagnoses reduces healthcare costs & errors
-🔬 Ethical Considerations
-Ensuring data privacy 🛡️
-Preventing bias in AI predictions ⚖️
-Complementing doctors, not replacing them 🏥
-🤝 Contributing
-We welcome contributions! Feel free to fork, improve, or report issues.
-
-🔗 MIT License - Free to use, modify, and distribute.
-
-💬 FAQs
-❓ What dataset did you use?
-Publicly available stroke MRI datasets, preprocessed and split into training/testing.
-
-❓ What’s the accuracy of the model?
-Achieved X% accuracy on test data, validated with real MRI scans.
-
-❓ How does this project impact real-world healthcare?
-It enables early detection, faster diagnosis, and improved patient care.
-
-👨‍💻 Author
-💡 Syed Ahamed | AI & ML Researcher | Student
-📧 Contact: sskzm6059@gmail.com
-🔗 GitHub: Ahamedinmotion
+[More recent engineering work →](https://github.com/Ahamedinmotion)
